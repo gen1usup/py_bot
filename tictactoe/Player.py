@@ -1,28 +1,34 @@
-from star_game import comp_mark, player_mark, empty_mark
 
+
+player_mark = '[x]'
+comp_mark = "[o]"
+empty_mark = "[ ]"
 
 
 class Player:
-    def __init__(self, mark, name):
+    def __init__(self, name, mark):
         self.mark = mark
         self.name = name
 
 
-
 class HumanPlayer(Player):
-    def __init__(self, mark, name):
-        super.__init__()
+    def __init__(self, name, mark):
+        self.mark = mark
+        self.name = name
 
-    def turn(self):
-        pass
+    def turn(self, field):
+        coordinate_x = list(input())
+        field[int(coordinate_x[0]) - 1][int(coordinate_x[1]) - 1] = self.mark
+        return field
 
 
 class CompPlayer():
-    # def __init__(self, mark=comp_mark, name="Comp"):
-    #     pass
+    def __init__(self, name, mark):
+        self.mark = mark
+        self.name = name
 
-    @staticmethod
     def turn(self, field):
+
         for stroka in range(3):
             if field[stroka][1] == field[stroka][0] == player_mark:
                 if field[stroka][2] != comp_mark and field[stroka][2] == empty_mark:
@@ -66,4 +72,3 @@ class CompPlayer():
                 if field[k][p] == empty_mark:
                     field[k][p] = comp_mark
                     return field
-
